@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerController : BaseController
@@ -55,5 +56,13 @@ public class PlayerController : BaseController
         {
             lookDirection = lookDirection.normalized;
         }
+    }
+
+    void OnFire(InputValue inputValue)
+    {
+        //if (EventSystem.current.IsPointerOverGameObject()) // ?
+        //    return;
+
+        isAttacking = inputValue.isPressed;
     }
 }

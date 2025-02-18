@@ -123,6 +123,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &68724555
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 68724557}
+  - component: {fileID: 68724556}
+  m_Layer: 0
+  m_Name: ProjectileManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &68724556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68724555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56dc759a44c6fe2418b1449c84c0a8b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefabs:
+  - {fileID: 4825873663203365226, guid: 9d1b33cd721a5e3428515609383db8a5, type: 3}
+  - {fileID: 8054652320799849428, guid: 106955925d49f314d93cf95d740dfad5, type: 3}
+--- !u!4 &68724557
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68724555}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.6197199, y: 0.6599041, z: 0.30434862}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &341518681
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +227,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 432367307}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WeaponPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10233,7 +10280,7 @@ Transform:
   m_GameObject: {fileID: 833172773}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.477161, y: 1.6964501, z: -0.5004953}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11851,7 +11898,7 @@ GameObject:
   - component: {fileID: 1835613971}
   - component: {fileID: 1835613970}
   - component: {fileID: 1835613972}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13278,7 +13325,9 @@ GameObject:
   - component: {fileID: 1867167910}
   - component: {fileID: 1867167914}
   - component: {fileID: 1867167915}
-  m_Layer: 0
+  - component: {fileID: 1867167917}
+  - component: {fileID: 1867167916}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13299,6 +13348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterRenderer: {fileID: 1926909059}
   weaponPivot: {fileID: 432367307}
+  weaponPrefab: {fileID: 1306593525599816875, guid: a151824c272566d468560b084fd960e1, type: 3}
 --- !u!61 &1867167911
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13430,6 +13480,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24706e472c609ab40a9504111a003134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1867167916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867167909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae7557398372bdb40a84c6abd7941ff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthChangeDelay: 0.5
+--- !u!114 &1867167917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867167909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3314353f59843b4429c3580459aa3292, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  speed: 3
 --- !u!1 &1926909058
 GameObject:
   m_ObjectHideFlags: 0
@@ -13441,7 +13518,7 @@ GameObject:
   - component: {fileID: 1926909060}
   - component: {fileID: 1926909059}
   - component: {fileID: 1926909061}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13544,3 +13621,4 @@ SceneRoots:
   - {fileID: 1867167913}
   - {fileID: 833172774}
   - {fileID: 341518683}
+  - {fileID: 68724557}

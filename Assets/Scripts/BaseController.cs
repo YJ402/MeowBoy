@@ -23,12 +23,24 @@ public class BaseController : MonoBehaviour
 
     protected StatHandler statHandler;
 
+    //게임에서 사용할 무기를 담는 변수
+    [SerializeField] public WeaponHandler weaponPrefab; 
+    protected WeaponHandler weaponHandler;
+
+    protected bool isAttacking;
+    private float timeSinceLastAttack = float.MaxValue; // 왜 맥스로 초기화한 이유: 게임 시작하자마자 공격이 가능하게 하려고.
+
     protected virtual void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         animationHandler = GetComponent<AnimationHandler>();
         //statHandler = GetComponent<StatHandler>();
         statHandler = gameObject.AddComponent<StatHandler>();
+
+        if (weaponPrefab != null) // 게임 상에서 다룰 무기를 정하는 로직.
+            weaponHandler = Instantiate(weaponPrefab, weaponPivot); // 인스펙터 상에서 할당돼있는 프리팹이 있으면 그걸로 정하고,
+        else
+            weaponHandler = GetComponentInChildren<WeaponHandler>(); // 자식객체에 무기가 있으면 그걸로 정함.
     }
 
     protected virtual void Start() // 가상, 추상 메서드는 당연히 private일 수 없음.
@@ -40,6 +52,7 @@ public class BaseController : MonoBehaviour
     {
         //HandleAction();
         Rotate(lookDirection);
+        HandleAttackDelay();
     }
 
     protected void FixedUpdate()
@@ -76,19 +89,42 @@ public class BaseController : MonoBehaviour
 
         characterRenderer.flipX = isLeft;
 
-        if(weaponPivot = null)
+        if (weaponPivot = null)
         {
             weaponPivot.rotation = Quaternion.Euler(0, 0, rotZ);
         }
+
+        weaponHandler?.Rotate(isLeft); // 
     }
 
     public void ApplyKnockback(Transform other, float power, float duration)
     {
         knockbackDuration = duration;
-        knockback = -(other.position - transform.position).normalized * power; 
+        knockback = -(other.position - transform.position).normalized * power;
         // 공격자의 위치 - 피격자의 위치 = 피격자가 공격자를 바라보는 벡터. (-)를 붙여서 벡터 방향을 반대로 설정. 
         // normalized: 벡터의 크기를 1로 정규화하면, 벡터의 크기는 사라지고 방향만 남음.
     }
 
+    private void HandleAttackDelay() // 
+    {
+        if (weaponHandler == null)
+            return;
 
+        if (timeSinceLastAttack <= weaponHandler.Delay)
+        {
+            timeSinceLastAttack += Time.deltaTime;
+        }
+
+        if(isAttacking && timeSinceLastAttack > weaponHandler.Delay)
+        {
+            timeSinceLastAttack = 0; // 왜 맥스가 아니고 0일까?
+            Attack();
+        }
+    }
+
+    protected virtual void Attack()
+    {
+        if(lookDirection != Vector2.zero)
+            weaponHandler.Attack();
+    }
 }
