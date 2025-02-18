@@ -27,7 +27,8 @@ public class BaseController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         animationHandler = GetComponent<AnimationHandler>();
-        statHandler = GetComponent<StatHandler>();
+        //statHandler = GetComponent<StatHandler>();
+        statHandler = gameObject.AddComponent<StatHandler>();
     }
 
     protected virtual void Start() // 가상, 추상 메서드는 당연히 private일 수 없음.
