@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 6061193411384936283}
   - component: {fileID: 8633615952270662309}
   m_Layer: 15
-  m_Name: Obstacle
+  m_Name: Obstacle_cactus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

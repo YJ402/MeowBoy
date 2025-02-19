@@ -35,7 +35,9 @@ public class BaseController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         animationHandler = GetComponent<AnimationHandler>();
         //statHandler = GetComponent<StatHandler>();
-        statHandler = gameObject.AddComponent<StatHandler>();
+        //statHandler = gameObject.AddComponent<StatHandler>(); //왜 Add지?  이거 때매 플레이어에 스탯 두개 붙음
+        statHandler = GetComponent<StatHandler>(); 
+
 
         if (weaponPrefab != null) // 게임 상에서 다룰 무기를 정하는 로직.
             weaponHandler = Instantiate(weaponPrefab, weaponPivot); // 인스펙터 상에서 할당돼있는 프리팹이 있으면 그걸로 정하고,
@@ -74,7 +76,7 @@ public class BaseController : MonoBehaviour
         direction = direction * statHandler.Speed; // statHandler의 값을 가져옴. C#이랑 달리 유니티에선 스크립트 하나를 복사할 수가 있네. 
         if (knockbackDuration > 0f)
         {
-            direction *= 0.2f;
+            direction *= 0.5f;
             direction += knockback;
         }
 

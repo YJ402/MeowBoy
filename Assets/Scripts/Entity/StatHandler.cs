@@ -16,7 +16,7 @@ public class StatHandler : MonoBehaviour
             health = Mathf.Clamp(value, 0, 20);
         }
     }
-    [Range(1f, 20f)][SerializeField] private float speed = 3;
+    [Range(1f, 100f)][SerializeField] private float speed = 3;
     public float Speed
     {
         get { return speed; }

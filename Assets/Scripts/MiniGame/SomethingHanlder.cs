@@ -23,18 +23,19 @@ public class SomethingHanlder : MonoBehaviour
     BaseController baseController;
 
     [SerializeField] Sprite[] sprites = new Sprite[9];
+    SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
     }
 
-    public void Init(int spriteindex, int score, int damage, bool onKnockback, int knockbackDuration)
+    public void Start()
     {
-        this.score = score;
-        this.damage = damage;
-        this.onKnockback = onKnockback;
-        this.knockbackDuration = knockbackDuration;
+        int rand = Random.Range(0, sprites.Length);
+
+        spriteRenderer = transform.GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer.sprite = sprites[rand];
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
