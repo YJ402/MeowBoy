@@ -553,7 +553,7 @@ MonoBehaviour:
   coinPrefab:
   - {fileID: 3969811701744216635, guid: 7a0b4e06f744a6f46ac3725e7c26e944, type: 3}
   densityMultiplier: 1
-  obstacleToCoinRatio: 0.2
+  coinToObstacleRatio: 0.1
 --- !u!20 &846453191559003032
 Camera:
   m_ObjectHideFlags: 0
