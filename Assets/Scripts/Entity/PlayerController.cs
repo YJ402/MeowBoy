@@ -7,14 +7,21 @@ using UnityEngine.InputSystem;
 public class PlayerController : BaseController
 {
     private Camera camera;
-
+    CameraController cameraController;
     
     protected override void Start()
     {
         base.Start();
         camera = Camera.main;
+        cameraController = camera.gameObject.GetComponent<CameraController>();
     }
 
+    protected override void Update()
+    {
+        base.Update();
+        cameraController.FollowPlayer(transform.position);
+        
+    }
     //protected override void HandleAction() // 플레이어만 마우스 방향에 반응해서 movement/look방향 결정
     //{
     //    float horizontal = Input.GetAxisRaw("Horizontal");

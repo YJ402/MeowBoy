@@ -14,10 +14,10 @@ TagManager:
   - Player
   - Enemy
   - Level
-  - 
-  - 
-  - 
-  - 
+  - left
+  - right
+  - bottom
+  - top
   - 
   - 
   - 
