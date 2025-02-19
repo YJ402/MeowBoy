@@ -22,9 +22,19 @@ public class SomethingHanlder : MonoBehaviour
     ResourceController resourceController;
     BaseController baseController;
 
+    [SerializeField] Sprite[] sprites = new Sprite[9];
+
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
+    }
+
+    public void Init(int spriteindex, int score, int damage, bool onKnockback, int knockbackDuration)
+    {
+        this.score = score;
+        this.damage = damage;
+        this.onKnockback = onKnockback;
+        this.knockbackDuration = knockbackDuration;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -44,4 +54,6 @@ public class SomethingHanlder : MonoBehaviour
             //애니메이션 이벤트로 애니메이션 실행후 파괴되게 해놨음.
         }
     }
+
+
 }

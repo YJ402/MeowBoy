@@ -14,11 +14,6 @@ public class DestroyMap : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 8)
-            //{
-            //    GameObject parent = collision.gameObject.transform.parent.gameObject;
-            //    Destroy(parent);
-            //}
-
             minigameMapHandler.CreateDestroyMap(collision);
     }
 }
