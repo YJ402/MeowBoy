@@ -22,6 +22,9 @@ public class CameraController : MonoBehaviour
     Vector3 lastPosition = Vector3.zero;
     Vector3 expectedPosition = Vector3.zero;
 
+
+
+
     //private void Start()
     //{
     //    levelCollision = FindAnyObjectByType().

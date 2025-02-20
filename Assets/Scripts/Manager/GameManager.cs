@@ -2,12 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManger : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public static GameManger Instance;
+    public enum SceneType
+    {
+        MainScene,
+        MiniGameScene
+
+    }
+    public static GameManager Instance;
 
     private int totalScore;
     public int TotalScore {  get { return totalScore; } }
+
+    public SceneType currentScene = SceneType.MiniGameScene;
 
     private void Awake()
     {
