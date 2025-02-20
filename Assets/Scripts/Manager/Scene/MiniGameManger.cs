@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MiniGameManger : MonoBehaviour
+public class MiniGameManger : _SceneManager
 {
     public static MiniGameManger M_instance;
 
@@ -25,6 +25,7 @@ public class MiniGameManger : MonoBehaviour
     [SerializeField] private TextMeshProUGUI currentCoin;
     [SerializeField] private TextMeshProUGUI bestCoint;
 
+
     private void Awake()
     {
         M_instance = this;
@@ -38,7 +39,7 @@ public class MiniGameManger : MonoBehaviour
         minigameMapHandler = GetComponent<MinigameMapHandler>();
     }
 
-    private void Start()
+    protected void Start()
     {
         playerSpawnHandler.SpawnPlayer(playerSpawnLocation.transform.position);
         Instantiate(destroyLinePrefab, Camera.main.transform);
@@ -48,7 +49,7 @@ public class MiniGameManger : MonoBehaviour
     {
         Matchsocre += score;
         Debug.Log($"{Matchsocre}");
-        coin.text = score.ToString();  
+        coin.text = score.ToString();
     }
 
     public void Die()
@@ -59,7 +60,7 @@ public class MiniGameManger : MonoBehaviour
         GameManager.Instance.AddScore(Matchsocre);
 
         //최고점수 기록
-        temp = PlayerPrefs.HasKey("MinibestScore")? PlayerPrefs.GetInt("MinibestScore"): int.MinValue;
+        temp = PlayerPrefs.HasKey("MinibestScore") ? PlayerPrefs.GetInt("MinibestScore") : int.MinValue;
         if (temp < Matchsocre)
         {
             PlayerPrefs.SetInt("MinibestScore", Matchsocre);

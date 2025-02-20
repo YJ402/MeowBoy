@@ -1,21 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public enum SceneType
+{
+    MainGameScene = 0,
+    MiniGameScene=5
+}
 
 public class GameManager : MonoBehaviour
 {
-    public enum SceneType
-    {
-        MainScene,
-        MiniGameScene
 
-    }
+
+
+
     public static GameManager Instance;
 
     private int totalScore;
     public int TotalScore {  get { return totalScore; } }
 
-    public SceneType currentScene = SceneType.MiniGameScene;
+    public SceneType currentScene = SceneType.MainGameScene;
+
 
     private void Awake()
     {
@@ -36,5 +42,12 @@ public class GameManager : MonoBehaviour
     public void AddScore(int score)
     {
         totalScore += score;
+    }
+
+    public void LoadScene(int i)
+    {
+        SceneManager.LoadScene(i);
+        GameManager.Instance.currentScene = (SceneType)i;
+        UIManager.Instance.ChangeState((UIState)i);
     }
 }

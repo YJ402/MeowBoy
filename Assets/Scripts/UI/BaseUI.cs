@@ -9,7 +9,6 @@ public abstract class BaseUI : MonoBehaviour
     public virtual void Init(UIManager _uimanager)
     {
         uimanager = _uimanager;
-        gameObject.SetActive(false);
     }
 
     protected abstract UIState GetUIState();

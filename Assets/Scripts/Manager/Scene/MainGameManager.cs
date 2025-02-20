@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainGameManager : MonoBehaviour
+public class MainGameManager : _SceneManager
 {
     PlayerSpawnHandler playerSpawnHandler;
      Transform playerSpawnLocation;
@@ -18,9 +18,8 @@ public class MainGameManager : MonoBehaviour
         cameraSpawnHandler.SpawnCamera();
     }
 
-    private void Start()
+    protected  void Start()
     {
-
         playerSpawnHandler.SpawnPlayer(playerSpawnLocation.transform.position);
 
     }

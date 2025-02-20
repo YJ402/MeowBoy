@@ -22,13 +22,13 @@ public class MiniGameOverUI : BaseUI
 
     private void OnClickRetryButton()
     {
-        SceneManager.LoadScene(1);
+        GameManager.Instance.LoadScene(5);
         UIManager.Instance.ChangeState(UIState.Mini_Game);
     }
 
     private void OnClickExitButton()
     {
-        SceneManager.LoadScene(0);
+        GameManager.Instance.LoadScene(0);
         UIManager.Instance.ChangeState(UIState.Main_Game);
     }
 
