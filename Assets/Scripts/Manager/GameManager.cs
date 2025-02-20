@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public enum SceneType
 {
     MainGameScene = 0,
-    MiniGameScene=5
+    MiniGameScene=1
 }
 
 public class GameManager : MonoBehaviour
@@ -47,7 +47,8 @@ public class GameManager : MonoBehaviour
     public void LoadScene(int i)
     {
         SceneManager.LoadScene(i);
-        GameManager.Instance.currentScene = (SceneType)i;
-        UIManager.Instance.ChangeState((UIState)i);
+        currentScene = (SceneType)i;
+        UIManager.Instance.ChangeState((UIState)(i*5));
+
     }
 }

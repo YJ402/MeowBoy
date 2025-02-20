@@ -20,4 +20,9 @@ public class MainGameUI : BaseUI
     {
         return UIState.Main_Game;
     }
+
+    public override void UpdateInfo()
+    {
+
+    }
 }

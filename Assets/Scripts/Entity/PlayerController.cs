@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -71,5 +72,13 @@ public class PlayerController : BaseController
         //    return;
 
         isAttacking = inputValue.isPressed;
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        Destroy(this.gameObject.GetComponent<Collider2D>());
+        Destroy(this.gameObject.GetComponent<Rigidbody2D>());
+        Destroy(this);
     }
 }

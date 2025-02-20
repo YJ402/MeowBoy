@@ -21,6 +21,6 @@ public class MainGameManager : _SceneManager
     protected  void Start()
     {
         playerSpawnHandler.SpawnPlayer(playerSpawnLocation.transform.position);
-
+        UIManager.Instance.ChangeState(UIState.Main_Game);
     }
 }

@@ -14,6 +14,16 @@ public abstract class BaseUI : MonoBehaviour
     protected abstract UIState GetUIState();
     public void SetActive(UIState state)
     {
-        gameObject.SetActive(GetUIState() == state); // 커렌트 UI가 아닌 애들은 알아서 꺼지도록.
+        if(GetUIState() == state)
+        {
+            gameObject.SetActive(true);
+            UpdateInfo();
+        }
+        else { gameObject.SetActive(false);  }
     }
+
+    public virtual void UpdateInfo()
+    {
+    }
+
 }

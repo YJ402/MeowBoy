@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ChangeHealthResultType
+{
+    fail,
+    success_alive,
+    success_die,
+    success_alreadydie,
+}
 public class ResourceController : MonoBehaviour
 {
     [SerializeField] private float healthChangeDelay = .5f;
@@ -14,6 +21,7 @@ public class ResourceController : MonoBehaviour
 
     public float CurrentHealth {  get; private set; }
     public float MaxHealth => statHandler.Health;
+
 
     private void Awake()
     {
@@ -40,10 +48,10 @@ public class ResourceController : MonoBehaviour
         }
     }
 
-    public bool ChangeHealth(float change)
+    public ChangeHealthResultType ChangeHealth(float change)
     {
         if (change == 0 || timeSinceLastChange < healthChangeDelay)
-            return false;
+            return ChangeHealthResultType.fail;
 
         timeSinceLastChange = 0;    
         CurrentHealth += change;
@@ -55,17 +63,23 @@ public class ResourceController : MonoBehaviour
             animationHandler.Damage();
         }
 
-        if(CurrentHealth <= 0)
+        if (CurrentHealth <= 0 && baseController.Alive)
         {
             Death();
+            return ChangeHealthResultType.success_die;
         }
+        else { return ChangeHealthResultType.success_alreadydie; }
 
-        return true;
+
+        Debug.Log("남은 체력: " + CurrentHealth);
+
+        return ChangeHealthResultType.success_alive;
 
     }
 
     private void Death()
     {
-
+        animationHandler.Death();
+        baseController.Die();
     }
 }

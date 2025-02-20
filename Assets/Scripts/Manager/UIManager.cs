@@ -36,15 +36,6 @@ public class UIManager : MonoBehaviour
                 ui?.Init(this);
             }
         }
-        //gameUI = GetComponentInChildren<MiniGameUI>(true); // true: 비활성화된 오브젝트도 탐색 범위에 포함
-        //gameOverUI = GetComponentInChildren<MiniGameOverUI>(true);
-        //mainGameUI = GetComponentInChildren<MainGameUI>(true);
-
-        //gameUI.Init(this);
-        //gameOverUI.Init(this);
-        //mainGameUI.Init(this);
-
-        ChangeState(UIState.Main_Game);
     }
 
     public TextMeshProUGUI GetMessageObject()
@@ -55,6 +46,7 @@ public class UIManager : MonoBehaviour
     public void ChangeState(UIState state)
     {
         currentState = state;
+
         foreach (var ui in UIs)
         {
             ui.SetActive(state);

@@ -10,7 +10,8 @@ public class MiniGameOverUI : BaseUI
     [SerializeField] private Button RetryButton;
     [SerializeField] private Button ExitButton;
 
-
+    [SerializeField] TextMeshProUGUI currentScore;
+    [SerializeField] TextMeshProUGUI bestScore;
 
     // Start is called before the first frame update
     public override void Init(UIManager _uimanager)
@@ -22,7 +23,7 @@ public class MiniGameOverUI : BaseUI
 
     private void OnClickRetryButton()
     {
-        GameManager.Instance.LoadScene(5);
+        GameManager.Instance.LoadScene(1);
         UIManager.Instance.ChangeState(UIState.Mini_Game);
     }
 
@@ -35,5 +36,16 @@ public class MiniGameOverUI : BaseUI
     protected override UIState GetUIState()
     {
         return UIState.Mini_GameOver;
+    }
+
+    public override void UpdateInfo()
+    {
+        //Debug.Log("2-2¹ø.");
+        //if (currentScore == null)
+        //    Debug.Log("#currentScore ³Î");
+        //if (bestScore == null)
+        //    Debug.Log("#bestScore ³Î");
+        currentScore.text = MiniGameManager.M_instance.Matchsocre.ToString();
+        bestScore.text = PlayerPrefs.GetInt("MinibestScore").ToString();
     }
 }

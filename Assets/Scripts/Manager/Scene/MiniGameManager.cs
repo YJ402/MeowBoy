@@ -4,9 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MiniGameManger : _SceneManager
+public class MiniGameManager : _SceneManager
 {
-    public static MiniGameManger M_instance;
+    public static MiniGameManager M_instance;
 
     PlayerSpawnHandler playerSpawnHandler;
     Transform playerSpawnLocation;
@@ -15,7 +15,9 @@ public class MiniGameManger : _SceneManager
 
     MinigameMapHandler minigameMapHandler;
 
-    int Matchsocre;
+    ResourceController resourceController;
+
+    public int Matchsocre;
 
     [SerializeField] private GameObject destroyLinePrefab;
 
@@ -23,8 +25,9 @@ public class MiniGameManger : _SceneManager
     [SerializeField] private TextMeshProUGUI coin;
 
     [SerializeField] private TextMeshProUGUI currentCoin;
-    [SerializeField] private TextMeshProUGUI bestCoint;
+    [SerializeField] private TextMeshProUGUI bestCoin;
 
+    GameObject player;
 
     private void Awake()
     {
@@ -41,31 +44,32 @@ public class MiniGameManger : _SceneManager
 
     protected void Start()
     {
-        playerSpawnHandler.SpawnPlayer(playerSpawnLocation.transform.position);
+        player = playerSpawnHandler.SpawnPlayer(playerSpawnLocation.transform.position);
+        resourceController = player.GetComponent<ResourceController>();
         Instantiate(destroyLinePrefab, Camera.main.transform);
+        UIManager.Instance.ChangeState(UIState.Mini_Game);
     }
 
     public void AddScore(int score)
     {
         Matchsocre += score;
-        Debug.Log($"{Matchsocre}");
-        coin.text = score.ToString();
+        //Debug.Log($"{Matchsocre}");
+        coin.text = Matchsocre.ToString();
     }
 
-    public void Die()
+    public void DieEvent()
     {
-        int temp;
+        Debug.Log("사망 이벤트 발생");
 
         //플레이어의 지갑에 추가
         GameManager.Instance.AddScore(Matchsocre);
 
         //최고점수 기록
-        temp = PlayerPrefs.HasKey("MinibestScore") ? PlayerPrefs.GetInt("MinibestScore") : int.MinValue;
+        int temp = PlayerPrefs.HasKey("MinibestScore") ? PlayerPrefs.GetInt("MinibestScore") : int.MinValue;
         if (temp < Matchsocre)
         {
             PlayerPrefs.SetInt("MinibestScore", Matchsocre);
         }
-
         //종료 UI호출
         UIManager.Instance.ChangeState(UIState.Mini_GameOver);
     }

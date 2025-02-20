@@ -20092,7 +20092,7 @@ Transform:
   m_GameObject: {fileID: 1369588207}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.080942, y: 0, z: 3.355116}
+  m_LocalPosition: {x: -31.86, y: 0, z: 3.355116}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -29994,7 +29994,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2111431123}
-  - component: {fileID: 2111431122}
+  - component: {fileID: 2111431127}
   - component: {fileID: 2111431125}
   - component: {fileID: 2111431124}
   - component: {fileID: 2111431126}
@@ -30005,22 +30005,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2111431122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2111431121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dda0e5838e88c04986d497b662f6e25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyLinePrefab: {fileID: 6600417048247731956, guid: e03eecb8b49fd17488028500edb121a0, type: 3}
-  coin: {fileID: 2885168418368099600}
-  currentCoin: {fileID: 4739308228231350582}
-  bestCoint: {fileID: 4456328206908952996}
 --- !u!4 &2111431123
 Transform:
   m_ObjectHideFlags: 0
@@ -30084,6 +30068,23 @@ MonoBehaviour:
   - {fileID: 3969811701744216635, guid: 7a0b4e06f744a6f46ac3725e7c26e944, type: 3}
   densityMultiplier: 1
   coinToObstacleRatio: 0.1
+--- !u!114 &2111431127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111431121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1ffb54ddfbec1c42a6efb219fa66f48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Matchsocre: 0
+  destroyLinePrefab: {fileID: 6600417048247731956, guid: e03eecb8b49fd17488028500edb121a0, type: 3}
+  coin: {fileID: 2885168418368099600}
+  currentCoin: {fileID: 4739308228231350582}
+  bestCoin: {fileID: 4456328206908952996}
 --- !u!224 &187674669083590206
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30359,7 +30360,7 @@ GameObject:
   - component: {fileID: 1989145574131192023}
   - component: {fileID: 6211044434869956417}
   m_Layer: 5
-  m_Name: GameOverUI
+  m_Name: MiniGameOverUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30484,7 +30485,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: number
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -31055,7 +31056,7 @@ GameObject:
   - component: {fileID: 2795065815467009639}
   - component: {fileID: 4497672783072223465}
   m_Layer: 5
-  m_Name: GameUI
+  m_Name: MiniGameUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31286,6 +31287,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RetryButton: {fileID: 2943911653392380713}
   ExitButton: {fileID: 807701854333315077}
+  currentScore: {fileID: 4739308228231350582}
+  bestScore: {fileID: 4456328206908952996}
 --- !u!114 &6504041863860264450
 MonoBehaviour:
   m_ObjectHideFlags: 0

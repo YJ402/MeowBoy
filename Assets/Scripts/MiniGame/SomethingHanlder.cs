@@ -50,7 +50,14 @@ public class SomethingHanlder : MonoBehaviour
                 baseController.ApplyKnockback(transform, 1, KnockbackDuration);
             }
 
-            MiniGameManger.M_instance.AddScore(score);
+            resourceController = collision.GetComponent<ResourceController>();
+
+            if (resourceController.ChangeHealth(-damage) == ChangeHealthResultType.success_die) 
+                MiniGameManager.M_instance.DieEvent();
+            
+            
+            MiniGameManager.M_instance.AddScore(score);
+
 
             //애니메이션 이벤트로 애니메이션 실행후 파괴되게 해놨음.
         }

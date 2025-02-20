@@ -30,6 +30,9 @@ public class BaseController : MonoBehaviour
     protected bool isAttacking;
     private float timeSinceLastAttack = float.MaxValue; // 왜 맥스로 초기화한 이유: 게임 시작하자마자 공격이 가능하게 하려고.
 
+    protected bool alive = true;
+    public bool Alive { get { return alive; } }
+
     protected virtual void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -128,5 +131,11 @@ public class BaseController : MonoBehaviour
     {
         if(lookDirection != Vector2.zero)
             weaponHandler.Attack();
+    }
+
+    public  virtual void Die()
+    {
+        alive = false;
+        Movement(Vector2.zero);
     }
 }
